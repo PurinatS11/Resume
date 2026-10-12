@@ -1,43 +1,203 @@
-body {
-  max-width: 750px;
-  margin: 40px auto;
-  padding: 0 20px;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #222;
-  background-color: white;
+* {
+  box-sizing: border-box;
 }
 
-h1 {
+html {
+  background-color: #eeeeee;
+}
+
+body {
+  max-width: 800px;
+  min-height: 1035px;
+  margin: 30px auto;
+  padding: 70px 80px;
+  background-color: white;
+  color: #222222;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 410px;
+  top: -170px;
+  left: -100px;
+  background-color: #dddddd;
+  border-radius: 90px;
+  transform: rotate(-45deg);
+  z-index: -1;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  right: -190px;
+  bottom: -160px;
+  background-color: #dddddd;
+  border-radius: 80px;
+  transform: rotate(-45deg);
+  z-index: -1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+  min-height: 220px;
+  padding-bottom: 60px;
+}
+
+header h1 {
+  margin: 0;
+  font-family: "Segoe Script", "Brush Script MT", cursive;
+  font-size: 64px;
+  font-weight: normal;
+  line-height: 1.1;
+}
+
+header p {
+  flex: 0 0 205px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+header p::before {
+  content: "Contact";
+  display: block;
   margin-bottom: 8px;
-  font-size: 32px;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  grid-template-areas:
+    "education experience"
+    "skills experience";
+  gap: 45px;
+  align-items: start;
+}
+
+main section:nth-child(1) {
+  grid-area: education;
+}
+
+main section:nth-child(2) {
+  grid-area: experience;
+}
+
+main section:nth-child(3) {
+  grid-area: skills;
 }
 
 section {
-  margin-top: 28px;
+  min-width: 0;
 }
 
 h2 {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #999;
-  font-size: 20px;
+  margin: 0 0 24px;
+  font-size: 22px;
+  font-weight: normal;
+  letter-spacing: 1px;
 }
 
 h3 {
-  margin-top: 20px;
-  margin-bottom: 5px;
-  font-size: 17px;
+  position: relative;
+  margin: 25px 0 8px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+h2 + h3 {
+  margin-top: 0;
+}
+
+h3::before {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  top: 6px;
+  left: 0;
+  background-color: #dddddd;
+  transform: rotate(45deg);
+}
+
+section:nth-child(1) h3,
+section:nth-child(1) p,
+section:nth-child(2) h3,
+section:nth-child(2) p {
+  padding-left: 25px;
 }
 
 p {
-  margin: 5px 0;
+  margin: 6px 0;
+}
+
+strong {
+  font-weight: normal;
 }
 
 ul {
-  padding-left: 22px;
+  margin: 8px 0 24px;
+  padding-left: 39px;
 }
 
 li {
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+}
+
+section:nth-child(3) p {
+  margin-bottom: 12px;
+}
+
+section:nth-child(3) strong {
+  display: block;
+  font-weight: bold;
+}
+
+/* Stack everything on smaller screens */
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+    padding: 40px 28px;
+    min-height: 100vh;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    min-height: auto;
+    padding-bottom: 45px;
+  }
+
+  header h1 {
+    font-size: 52px;
+  }
+
+  header p {
+    flex: auto;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "education"
+      "experience"
+      "skills";
+    gap: 35px;
+  }
 }
